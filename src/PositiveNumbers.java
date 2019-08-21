@@ -4,11 +4,15 @@ public class PositiveNumbers {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             List<Integer> list = createList(scanner);
-            printReverse(list);
-            countSumAndPrint(list);
-            System.out.println("Minimalna wartość w liście to: " + findMin(list));
-            System.out.println("Maksymalna wartość w liście to: " + findMax(list));
-        } catch (InputMismatchException | IndexOutOfBoundsException e) {
+            if (list.size() > 0) {
+                printReverse(list);
+                countSumAndPrint(list);
+                System.out.println("Minimalna wartość w liście to: " + findMin(list));
+                System.out.println("Maksymalna wartość w liście to: " + findMax(list));
+            } else {
+                System.out.println("Lista jest pusta");
+            }
+        } catch (InputMismatchException e) {
             System.out.println("Wprowadzaj tylko liczby, pierwsza ujemna zakończy tworzenie listy");
         }
     }
@@ -38,6 +42,7 @@ public class PositiveNumbers {
 
     private static void countSumAndPrint(List<Integer> list) {
         int sum = 0;
+
 
         for (int i = 0; i < list.size() - 1; i++) {
             sum += list.get(i);
