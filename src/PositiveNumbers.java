@@ -4,11 +4,11 @@ public class PositiveNumbers {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             List<Integer> list = createList(scanner);
-            if (list.size() > 0) {
+            if (!list.isEmpty()) {
                 printReverse(list);
                 countSumAndPrint(list);
-                System.out.println("Minimalna wartość w liście to: " + findMin(list));
-                System.out.println("Maksymalna wartość w liście to: " + findMax(list));
+                System.out.println("Minimalna wartość w liście to: " + Collections.min(list));
+                System.out.println("Maksymalna wartość w liście to: " + Collections.max(list));
             } else {
                 System.out.println("Lista jest pusta");
             }
@@ -19,15 +19,15 @@ public class PositiveNumbers {
 
     private static List<Integer> createList(Scanner scanner) {
         List<Integer> list = new ArrayList<>();
-        int number = 0;
+
+        System.out.println("Wprowadzaj liczby");
+        int number = scanner.nextInt();
+        scanner.nextLine();
 
         while (number >= 0) {
-            System.out.println("Wprowadź liczbę");
+            list.add(number);
             number = scanner.nextInt();
             scanner.nextLine();
-            if (number >= 0) {
-                list.add(number);
-            }
         }
         return list;
     }
@@ -43,20 +43,11 @@ public class PositiveNumbers {
     private static void countSumAndPrint(List<Integer> list) {
         int sum = 0;
 
-
         for (int i = 0; i < list.size() - 1; i++) {
             sum += list.get(i);
             System.out.printf("%d + ", list.get(i));
         }
         sum += list.get(list.size() - 1);
         System.out.println(list.get(list.size() - 1) + " = " + sum);
-    }
-
-    private static int findMin(List list) {
-        return (int) Collections.min(list);
-    }
-
-    private static int findMax(List list) {
-        return (int) Collections.max(list);
     }
 }
